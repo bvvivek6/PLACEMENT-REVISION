@@ -1,0 +1,12 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Python (if you add scripts later)
+__pycache__/
+*.pyc
+.venv/
+
+# Misc
+*.log

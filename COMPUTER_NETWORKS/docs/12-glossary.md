@@ -1,0 +1,24 @@
+# Glossary
+
+- **ACK**: acknowledgement (TCP)
+- **ARP**: Address Resolution Protocol
+- **BDP**: bandwidth-delay product
+- **Broadcast domain**: set of devices that receive a broadcast frame
+- **cwnd**: congestion window (TCP)
+- **DNS**: Domain Name System
+- **DNAT**: destination NAT
+- **FCS**: Frame Check Sequence
+- **Flow control**: prevents sender from overrunning receiver
+- **ICMP**: Internet Control Message Protocol
+- **MTU**: maximum transmission unit
+- **MSS**: maximum segment size
+- **NAT**: network address translation
+- **OSI**: Open Systems Interconnection model
+- **RTT**: round-trip time
+- **SNAT**: source NAT
+- **SNI**: Server Name Indication (TLS)
+- **TCP**: Transmission Control Protocol
+- **TLS**: Transport Layer Security
+- **TTL**: time to live
+- **UDP**: User Datagram Protocol
+- **VLAN**: virtual LAN
