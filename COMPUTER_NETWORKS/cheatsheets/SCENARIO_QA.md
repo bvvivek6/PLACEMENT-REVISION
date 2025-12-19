@@ -73,3 +73,28 @@ Traceroute relies on ICMP Time Exceeded replies; routers can drop/rate-limit the
 - TLS handshake costs extra round trips (depends on version, resumption)
 - Certificate validation and OCSP can add delays
 - Mitigate with keep-alives, session resumption, HTTP/2, and caching
+
+## 7) "What happens when I search a website?" (The Classic Question)
+
+**1. URL Parsing & DNS**
+
+- Browser checks cache, OS cache, `hosts` file.
+- If missing, asks configured DNS Resolver (ISP/Public).
+- Resolver iterates (Root -> TLD -> Authoritative) to find the IP.
+
+**2. Connection Establishment**
+
+- **ARP**: If IP is local, ARP for MAC. If remote, ARP for Gateway MAC.
+- **TCP Handshake**: SYN, SYN-ACK, ACK (3-way).
+- **TLS Handshake**: ClientHello, ServerHello, Cert Exchange, Key Gen, Finished.
+
+**3. Request & Response**
+
+- Browser sends **HTTP GET** request (encrypted).
+- Server processes request (Reverse Proxy -> App Server -> DB).
+- Server sends **HTTP 200 OK** with HTML content.
+
+**4. Rendering**
+
+- Browser parses HTML (DOM), CSS (CSSOM), executes JS.
+- Fetches sub-resources (images, scripts) repeating steps above if needed.
