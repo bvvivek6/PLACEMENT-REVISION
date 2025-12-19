@@ -44,10 +44,10 @@ graph LR
     end
     S1 === C1
     S2 === C2
-    style S1 fill:#bbf
-    style S2 fill:#bbf
-    style C1 fill:#bbf
-    style C2 fill:#bbf
+    style S1 fill:#000
+    style S2 fill:#000
+    style C1 fill:#000
+    style C2 fill:#000
     style S3 fill:#fff,stroke-dasharray: 5 5
     style C3 fill:#fff,stroke-dasharray: 5 5
 ```
@@ -87,11 +87,11 @@ graph LR
     S1 === C1
     S2 === C2
     S3 -.- NULL
-    style S1 fill:#bbf
-    style S2 fill:#bbf
-    style S3 fill:#bbf
-    style C1 fill:#bbf
-    style C2 fill:#bbf
+    style S1 fill:#000
+    style S2 fill:#000
+    style S3 fill:#000
+    style C1 fill:#000
+    style C2 fill:#000
     style C3 fill:#fff,stroke-dasharray: 5 5
 ```
 
@@ -131,11 +131,11 @@ graph LR
     S1 === C1
     S2 === C2
     NULL -.- C3
-    style S1 fill:#bbf
-    style S2 fill:#bbf
-    style C1 fill:#bbf
-    style C2 fill:#bbf
-    style C3 fill:#bbf
+    style S1 fill:#000
+    style S2 fill:#000
+    style C1 fill:#000
+    style C2 fill:#000
+    style C3 fill:#000
     style S3 fill:#fff,stroke-dasharray: 5 5
 ```
 
@@ -176,12 +176,12 @@ graph LR
     S2 === C2
     S3 -.- NULL1[NULL]
     NULL2[NULL] -.- C3
-    style S1 fill:#bbf
-    style S2 fill:#bbf
-    style S3 fill:#bbf
-    style C1 fill:#bbf
-    style C2 fill:#bbf
-    style C3 fill:#bbf
+    style S1 fill:#000
+    style S2 fill:#000
+    style S3 fill:#000
+    style C1 fill:#000
+    style C2 fill:#000
+    style C3 fill:#000
 ```
 
 **Result:**
