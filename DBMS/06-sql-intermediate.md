@@ -4,9 +4,59 @@
 
 Joins are used to combine rows from two or more tables based on a related column between them.
 
+### Visualizing Data for Examples
+
+Consider two tables: **Students** and **Courses**.
+
+**Table: Students**
+| ID | Name | CourseID |
+|---|---|---|
+| 1 | Alice | 101 |
+| 2 | Bob | 102 |
+| 3 | Charlie | NULL |
+
+**Table: Courses**
+| ID | CourseName |
+|---|---|
+| 101 | Math |
+| 102 | Science |
+| 103 | History |
+
+---
+
 ### 1. INNER JOIN
 
-Returns records that have matching values in both tables.
+Returns records that have matching values in **both** tables.
+
+**Diagram:**
+
+```mermaid
+graph LR
+    subgraph Students
+    S1(Alice)
+    S2(Bob)
+    S3(Charlie)
+    end
+    subgraph Courses
+    C1(Math)
+    C2(Science)
+    C3(History)
+    end
+    S1 === C1
+    S2 === C2
+    style S1 fill:#bbf
+    style S2 fill:#bbf
+    style C1 fill:#bbf
+    style C2 fill:#bbf
+    style S3 fill:#fff,stroke-dasharray: 5 5
+    style C3 fill:#fff,stroke-dasharray: 5 5
+```
+
+**Result:**
+| Name | CourseName |
+|---|---|
+| Alice | Math |
+| Bob | Science |
 
 ```sql
 SELECT Students.Name, Courses.CourseName
@@ -14,9 +64,43 @@ FROM Students
 INNER JOIN Courses ON Students.CourseID = Courses.ID;
 ```
 
+---
+
 ### 2. LEFT JOIN (LEFT OUTER JOIN)
 
-Returns all records from the left table, and the matched records from the right table.
+Returns all records from the **left** table (Students), and the matched records from the right table (Courses). If no match, the result is NULL.
+
+**Diagram:**
+
+```mermaid
+graph LR
+    subgraph Students
+    S1(Alice)
+    S2(Bob)
+    S3(Charlie)
+    end
+    subgraph Courses
+    C1(Math)
+    C2(Science)
+    C3(History)
+    end
+    S1 === C1
+    S2 === C2
+    S3 -.- NULL
+    style S1 fill:#bbf
+    style S2 fill:#bbf
+    style S3 fill:#bbf
+    style C1 fill:#bbf
+    style C2 fill:#bbf
+    style C3 fill:#fff,stroke-dasharray: 5 5
+```
+
+**Result:**
+| Name | CourseName |
+|---|---|
+| Alice | Math |
+| Bob | Science |
+| Charlie | NULL |
 
 ```sql
 SELECT Students.Name, Courses.CourseName
@@ -24,9 +108,43 @@ FROM Students
 LEFT JOIN Courses ON Students.CourseID = Courses.ID;
 ```
 
+---
+
 ### 3. RIGHT JOIN (RIGHT OUTER JOIN)
 
-Returns all records from the right table, and the matched records from the left table.
+Returns all records from the **right** table (Courses), and the matched records from the left table (Students).
+
+**Diagram:**
+
+```mermaid
+graph LR
+    subgraph Students
+    S1(Alice)
+    S2(Bob)
+    S3(Charlie)
+    end
+    subgraph Courses
+    C1(Math)
+    C2(Science)
+    C3(History)
+    end
+    S1 === C1
+    S2 === C2
+    NULL -.- C3
+    style S1 fill:#bbf
+    style S2 fill:#bbf
+    style C1 fill:#bbf
+    style C2 fill:#bbf
+    style C3 fill:#bbf
+    style S3 fill:#fff,stroke-dasharray: 5 5
+```
+
+**Result:**
+| Name | CourseName |
+|---|---|
+| Alice | Math |
+| Bob | Science |
+| NULL | History |
 
 ```sql
 SELECT Students.Name, Courses.CourseName
@@ -34,9 +152,45 @@ FROM Students
 RIGHT JOIN Courses ON Students.CourseID = Courses.ID;
 ```
 
+---
+
 ### 4. FULL JOIN (FULL OUTER JOIN)
 
-Returns all records when there is a match in either left or right table.
+Returns all records when there is a match in **either** left or right table.
+
+**Diagram:**
+
+```mermaid
+graph LR
+    subgraph Students
+    S1(Alice)
+    S2(Bob)
+    S3(Charlie)
+    end
+    subgraph Courses
+    C1(Math)
+    C2(Science)
+    C3(History)
+    end
+    S1 === C1
+    S2 === C2
+    S3 -.- NULL1[NULL]
+    NULL2[NULL] -.- C3
+    style S1 fill:#bbf
+    style S2 fill:#bbf
+    style S3 fill:#bbf
+    style C1 fill:#bbf
+    style C2 fill:#bbf
+    style C3 fill:#bbf
+```
+
+**Result:**
+| Name | CourseName |
+|---|---|
+| Alice | Math |
+| Bob | Science |
+| Charlie | NULL |
+| NULL | History |
 
 ```sql
 SELECT Students.Name, Courses.CourseName
@@ -44,9 +198,11 @@ FROM Students
 FULL OUTER JOIN Courses ON Students.CourseID = Courses.ID;
 ```
 
+---
+
 ### 5. CROSS JOIN
 
-Returns the Cartesian product of the two tables.
+Returns the Cartesian product of the two tables (Every student paired with every course).
 
 ```sql
 SELECT Students.Name, Courses.CourseName
@@ -56,7 +212,7 @@ CROSS JOIN Courses;
 
 ### 6. SELF JOIN
 
-A regular join, but the table is joined with itself.
+A regular join, but the table is joined with itself. Useful for hierarchical data (e.g., Employees and Managers).
 
 ```sql
 SELECT A.Name AS Employee, B.Name AS Manager
@@ -96,36 +252,4 @@ SELECT Department, COUNT(*)
 FROM Students
 GROUP BY Department
 HAVING COUNT(*) > 5;
-```
-
-## Subqueries (Nested Queries)
-
-A query within another query.
-
-### Scalar Subquery
-
-Returns a single value.
-
-```sql
-SELECT * FROM Students
-WHERE Age > (SELECT AVG(Age) FROM Students);
-```
-
-### Multi-row Subquery
-
-Returns multiple rows. Used with `IN`, `ANY`, `ALL`.
-
-```sql
-SELECT * FROM Students
-WHERE Department IN (SELECT Department FROM Departments WHERE Location = 'New York');
-```
-
-### Correlated Subquery
-
-A subquery that uses values from the outer query.
-
-```sql
-SELECT Name, Salary
-FROM Employees E1
-WHERE Salary > (SELECT AVG(Salary) FROM Employees E2 WHERE E1.Department = E2.Department);
 ```
