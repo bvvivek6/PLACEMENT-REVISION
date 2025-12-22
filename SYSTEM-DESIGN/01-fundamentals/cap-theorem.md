@@ -36,9 +36,10 @@ graph TD
     P --- C
     end
 
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-    style A fill:#bbf,stroke:#333,stroke-width:2px
-    style P fill:#bfb,stroke:#333,stroke-width:2px
+    style C fill:#f9f,stroke:#000,stroke-width:2px
+    style A fill:#bbf,stroke:#000,stroke-width:2px
+    style P fill:#bfb,stroke:#000,stroke-width:2px
+
 ```
 
 ### CP (Consistency + Partition Tolerance)
