@@ -90,13 +90,8 @@ graph TD
     API[Backend API]
 
     subgraph Frontend
-        RQ[Server State Manager<br/>(React Query)]
-        Global[Global Store<br/>(Zustand/Context)]
-
-        CompA[Component A]
-        CompB[Component B]
-        CompC[Component C]
-    end
+        RQ["Server State Manager<br/>(React Query)"]
+        Global["Global Store<br/>(Zustand/Context)"]
 
     API <--> RQ
     RQ --> CompA

@@ -27,10 +27,10 @@ There are multiple layers of caching.
 ```mermaid
 graph TD
     User
-    BrowserCache[Browser Cache (Memory/Disk)]
-    ServiceWorker[Service Worker (Client Proxy)]
-    CDNCache[CDN Cache (Edge)]
-    ServerCache[Server Cache (Redis/Varnish)]
+    BrowserCache["Browser Cache (Memory/Disk)"]
+    ServiceWorker["Service Worker (Client Proxy)"]
+    CDNCache["CDN Cache (Edge)"]
+    ServerCache["Server Cache (Redis/Varnish)"]
     Database[Database]
 
     User --> BrowserCache

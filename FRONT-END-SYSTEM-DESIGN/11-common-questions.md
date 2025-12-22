@@ -51,3 +51,12 @@ Practice these scenarios. For each, define the **Requirements**, **Architecture*
   - **Lazy Loading:** Only load next/prev images.
   - **Preloading:** Preload the _next_ image for instant navigation.
   - **A11y:** Keyboard navigation (Arrow keys), ARIA roles.
+
+## 7. Design a Notification System
+
+- **Core Challenges:** Real-time delivery, state management, UX.
+- **Key Concepts:**
+  - **Protocol:** Server-Sent Events (SSE) or WebSockets.
+  - **State:** Global store (Context/Zustand) to show toast anywhere.
+  - **Queueing:** If 5 errors happen at once, stack them or show one by one?
+  - **Persistence:** Mark as read on server vs local state.

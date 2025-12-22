@@ -58,8 +58,8 @@ A CDN is a network of servers distributed globally.
 ```mermaid
 graph TD
     User[User in India]
-    Origin[Origin Server (USA)]
-    Edge[CDN Edge (Mumbai)]
+    Origin["Origin Server (USA)"]
+    Edge["CDN Edge (Mumbai)"]
 
     User -- 1. Request --> Edge
     Edge -- 2. Cache Miss --> Origin
